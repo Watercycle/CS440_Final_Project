@@ -3,8 +3,8 @@
 ;;;; --------------------------------------------------------------------- ;;;;
 ;;;;
 ;;;; Names:     Matthew Spero, Sorren Spiknall
-;;;; Class:     CS440-01 (IIT Fall 2016)
-;;;; Date:      November 1, 2016
+;;;; Class:     CS440-01 (Illinois Tech Fall 2016)
+;;;; Date:      November 01, 2016
 ;;;;
 ;;;; Objective: Create a Clite file verifier that will, when given a source file as input,
 ;;;;            produce separate output messages from the Lexer, Parser, and TYPE Checker.
