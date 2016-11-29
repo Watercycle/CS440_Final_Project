@@ -19,7 +19,7 @@ For example, if there is a folder named 'tests' in thesame directory as the jar 
 java -jar cverify.jar tests/comprehensive_test.txt
 
 
-# Building
+## Building
 
 Navigate to the project directory and run 
 
@@ -29,6 +29,27 @@ lein uberjar
 (http://leiningen.org/)
 
 A standalone jar file will be available under the 'target' directory.
+
+## Demonstration
+
+For example, the following code
+
+```c
+int main()
+{
+    int a,b,c,d;
+    float e,f,g,h;
+    int i[3];
+    
+    a =  + ;
+}
+```
+
+produces the following error:
+
+![alt text](https://github.com/Watercycle/CS440_Final_Project/blob/master/doc/failure.png "Failure")
+
+![alt text](https://github.com/Watercycle/CS440_Final_Project/blob/master/doc/success.png "Success")
 
 ## License
 
