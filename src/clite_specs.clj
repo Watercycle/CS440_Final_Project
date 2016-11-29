@@ -73,9 +73,9 @@
      Assignment = ID [OPEN_BRACKET Expr CLOSE_BRACKET] ASSIGNMENT_OP Expr
 
      IfStatement = If {ElseIf} [Else]
-     If = IF OPEN_PAREN Expr CLOSE_PAREN Block
-     ElseIf = ELSE_IF OPEN_PAREN Expr CLOSE_PAREN Block
-     Else = ELSE Block
+     If = IF OPEN_PAREN Expr CLOSE_PAREN Statement
+     ElseIf = ELSE_IF OPEN_PAREN Expr CLOSE_PAREN Statement
+     Else = ELSE Statement
 
      <Literal> = INTEGER | CHARACTER | BOOLEAN | FLOAT
      Expr = UNARY_OP Expr |

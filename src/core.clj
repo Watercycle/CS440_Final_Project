@@ -3,7 +3,7 @@
 ;;;; --------------------------------------------------------------------- ;;;;
 ;;;;
 ;;;; Names:     Matthew Spero, Sorren Spiknall
-;;;; Class:     CS440-01 (IIT Fall 2016)
+;;;; Class:     CS440-01 (llinois Tech Fall 2016)
 ;;;; Date:      November 1, 2016
 ;;;;
 ;;;; Objective: Create a Clite file verifier that will, when given a source file as input,
@@ -31,33 +31,35 @@
 (ns template.core
   (:require [instaparse.core :as insta]
             [lexer :refer [lexer]]
-            [syntax-analyzer :refer [parser parse-tree->ast]]))
+            [syntax-analyzer :refer [parser syntax-tree->ast]]
+            [type-checker :refer [ast->type-tree]]))
 
-; TODO: prompt for source file to verify when progam is ran
+ ;TODO: prompt for source file to verify when progam is ran
 ;(defn -main
 ;  "This should be pretty simple."
 ;  []
 ;  (println "Hello, World!"))
 
-(def source-file-complex
-  "int main()
-  {
-    int a;
-    float b[3];
-    char c;
+(def source-file-complex (slurp "test/source_files/comprehensive_test.txt"))
 
-    a = 1 + 1;
-    b[0] = a * 5.5;
-    c = '1';
+(defn clite-verifier
+  "Prints error message or outputs all of the completed trees."
+  [source-str]
+  (let [lex-tree (lexer source-str)
+        syntax-tree (parser source-str)
+        ast-tree (syntax-tree->ast syntax-tree)
+        type-tree (ast->type-tree ast-tree)]
 
-    if ((true && false) || true) {
-      a = 1;
-    } else if ((1 * 2 == 2) && !(3 > 1)) {
+    (cond (instance? String lex-tree) (println lex-tree)
+          (instance? String syntax-tree) (println syntax-tree)
 
-    } else {
+          :success
 
-    }
-  }")
+          (do (println "Successfully parsed source-str. Generating intermediate trees...")
+              (.mkdir (java.io.File. "output"))
+              (insta/visualize lex-tree :output-file "output/TokenStreamOutput.png")
+              (insta/visualize syntax-tree :output-file "output/SyntaxTreeOutput.png")
+              (insta/visualize ast-tree :output-file "output/ASTOutput.png")
+              (println "Finished creating intermediate trees. See output folder.")))))
 
-;:output-file "ParseTree2.png" :options {:dpi 63}
-(insta/visualize (parse-tree->ast (parser source-file-complex)))
+(clite-verifier source-file-complex)

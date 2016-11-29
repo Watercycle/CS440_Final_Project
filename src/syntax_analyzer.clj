@@ -28,7 +28,7 @@
   ([type name] [:VariableDeclaration type name])
   ([type name size] [:ArrayDeclaration type name size]))
 
-(def parse-tree-to-ast-transform
+(def syntax-tree->ast-transform
   {
    :TYPE                (fn [type] type)
    :ID                  (fn [id] id)
@@ -45,7 +45,7 @@
    :Expr                expressions-transform
    })
 
-(defn parse-tree->ast
-  "Returns an Abstract Syntax Tree of the transformed clite parse-tree."
-  [parse-tree]
-  (insta/transform parse-tree-to-ast-transform parse-tree))
+(defn syntax-tree->ast
+  "Returns an Abstract Syntax Tree of the transformed clite syntax-tree."
+  [syntax-tree]
+  (insta/transform syntax-tree->ast-transform syntax-tree))
