@@ -28,19 +28,16 @@
 ;;;;            satisfies these requirements quite nicely.
 ;;;;
 
-(ns template.core
+(ns clite.core
+  (:gen-class :main true)
   (:require [instaparse.core :as insta]
-            [lexer :refer [lexer]]
-            [syntax-analyzer :refer [parser syntax-tree->ast]]
-            [type-checker :refer [ast->type-tree]]))
+            [clite.lexer :refer [lexer]]
+            [clite.syntax-analyzer :refer [parser syntax-tree->ast]]
+            [clite.type-checker :refer [ast->type-tree]]))
 
- ;TODO: prompt for source file to verify when progam is ran
-;(defn -main
-;  "This should be pretty simple."
-;  []
-;  (println "Hello, World!"))
-
-(def source-file-complex (slurp "test/source_files/comprehensive_test.txt"))
+; FOR TESTING PURPOSES
+;(def source-file-complex (slurp "test/source_files/comprehensive_test.txt"))
+;(insta/visualize (lexer source-file-complex))
 
 (defn clite-verifier
   "Prints error message or outputs all of the completed trees."
@@ -62,4 +59,8 @@
               (insta/visualize ast-tree :output-file "output/ASTOutput.png")
               (println "Finished creating intermediate trees. See output folder.")))))
 
-(clite-verifier source-file-complex)
+(defn -main
+  "This should be pretty simple."
+  [& args]
+  (clite-verifier (slurp (first args)))
+  (System/exit 0))

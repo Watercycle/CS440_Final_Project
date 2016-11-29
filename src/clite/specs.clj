@@ -1,6 +1,5 @@
-(ns clite-specs
-  (:require [instaparse.core :as insta]
-            [clojure.string :as str]))
+(ns clite.specs
+  (:require [clojure.string :as str]))
 
 ;; A grammar specification of all tokens and terminals in CLite
 (def clite-grammar-tokens

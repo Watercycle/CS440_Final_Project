@@ -1,8 +1,8 @@
-(ns lexer
+(ns clite.lexer
   (:require [instaparse.core :as insta]
-            [clite-specs]))
+            [clite.specs]))
 
-(def clite-lex-parser (insta/parser clite-specs/clite-lexer-grammar :auto-whitespace :standard))
+(def clite-lex-parser (insta/parser clite.specs/clite-lexer-grammar :auto-whitespace :standard))
 
 (defn lexer
   "Returns an error string indicating what went wrong upon failure,

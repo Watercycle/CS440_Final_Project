@@ -1,8 +1,8 @@
-(ns syntax-analyzer
+(ns clite.syntax-analyzer
   (:require [instaparse.core :as insta]
-            [clite-specs]))
+            [clite.specs]))
 
-(def clite-syntax-parser (insta/parser clite-specs/clite-grammar-grammar :auto-whitespace :standard))
+(def clite-syntax-parser (insta/parser clite.specs/clite-grammar-grammar :auto-whitespace :standard))
 
 (defn parser
   "Returns a string upon failure, indicating what was wrong, and

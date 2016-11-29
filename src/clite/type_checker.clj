@@ -1,4 +1,4 @@
-(ns type-checker
+(ns clite.type-checker
   (:require [instaparse.core :as insta]
             [clojure.string :as str]))
 
