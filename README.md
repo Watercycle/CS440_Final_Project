@@ -49,6 +49,8 @@ produces the following error:
 
 ![alt text](https://github.com/Watercycle/CS440_Final_Project/blob/master/doc/failure.png "Failure")
 
+A properly formed file will provide confirmation and generate trees similar to the following:
+
 ![alt text](https://github.com/Watercycle/CS440_Final_Project/blob/master/doc/success.png "Success")
 
 ## License
