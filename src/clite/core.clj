@@ -57,11 +57,6 @@
               (insta/visualize type-tree :output-file "output/4_TypeTree.png")
               (println "Finished creating intermediate trees. See output folder.")))))
 
-; FOR TESTING PURPOSES
-(def source-file-complex (slurp "test/source_files/comprehensive_test.txt"))
-(clite-verifier source-file-complex)
-
-
 (defn -main
   "This should be pretty simple."
   [& args]
