@@ -2,7 +2,7 @@
 ;;;;                  CS 44O-01 Group Final Project                        ;;;;
 ;;;; --------------------------------------------------------------------- ;;;;
 ;;;;
-;;;; Names:     Matthew Spero, Sorren Spiknall, Neil Okhandiar
+;;;; Names:     Matthew Spero, Soren Spiknall, Neilabh Okhandiar
 ;;;; Class:     CS440-01 (llinois Tech Fall 2016)
 ;;;; Date:      November 1, 2016
 ;;;;
