@@ -23,7 +23,6 @@
 
 (def syntax-tree->type-tree-transform
   {
-
    :VariableDeclaration variable-declaration-transform
    })
 
@@ -73,7 +72,7 @@
    })
 
 (defn syntax-tree->type-tree
-  ""
+  "Returns a type tree of the transformed clite AST"
   [syntax-tree]
   (let [safe-tree (insta/transform remove-multiline-declaration syntax-tree)
         tree1 (insta/transform syntax-tree->type-tree-transform safe-tree)
