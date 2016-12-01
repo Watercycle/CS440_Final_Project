@@ -2,7 +2,7 @@
 ;;;;                  CS 44O-01 Group Final Project                        ;;;;
 ;;;; --------------------------------------------------------------------- ;;;;
 ;;;;
-;;;; Names:     Matthew Spero, Sorren Spiknall
+;;;; Names:     Matthew Spero, Sorren Spiknall, Neil Okhandiar
 ;;;; Class:     CS440-01 (llinois Tech Fall 2016)
 ;;;; Date:      November 1, 2016
 ;;;;
@@ -33,11 +33,8 @@
   (:require [instaparse.core :as insta]
             [clite.lexer :refer [lexer]]
             [clite.syntax-analyzer :refer [parser syntax-tree->ast]]
-            [clite.type-checker :refer [ast->type-tree]]))
-
-; FOR TESTING PURPOSES
-;(def source-file-complex (slurp "test/source_files/comprehensive_test.txt"))
-;(insta/visualize (lexer source-file-complex))
+            [clite.type-checker :refer [syntax-tree->type-tree]]
+            [clojure.walk :as walk]))
 
 (defn clite-verifier
   "Prints error message or outputs all of the completed trees."
@@ -45,19 +42,25 @@
   (let [lex-tree (lexer source-str)
         syntax-tree (parser source-str)
         ast-tree (syntax-tree->ast syntax-tree)
-        type-tree (ast->type-tree ast-tree)]
+        type-tree (syntax-tree->type-tree syntax-tree)]
 
     (cond (instance? String lex-tree) (println lex-tree)
           (instance? String syntax-tree) (println syntax-tree)
+          (instance? String type-tree) (println type-tree)
 
           :success
-
           (do (println "Successfully parsed source-str. Generating intermediate trees...")
               (.mkdir (java.io.File. "output"))
-              (insta/visualize lex-tree :output-file "output/TokenStreamOutput.png")
-              (insta/visualize syntax-tree :output-file "output/SyntaxTreeOutput.png")
-              (insta/visualize ast-tree :output-file "output/ASTOutput.png")
+              (insta/visualize lex-tree :output-file "output/1_TokenStreamOutput.png")
+              (insta/visualize syntax-tree :output-file "output/2_SyntaxTreeOutput.png")
+              (insta/visualize ast-tree :output-file "output/3_ASTOutput.png")
+              (insta/visualize type-tree :output-file "output/4_TypeTree.png")
               (println "Finished creating intermediate trees. See output folder.")))))
+
+; FOR TESTING PURPOSES
+(def source-file-complex (slurp "test/source_files/comprehensive_test.txt"))
+(clite-verifier source-file-complex)
+
 
 (defn -main
   "This should be pretty simple."

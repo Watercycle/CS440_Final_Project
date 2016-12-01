@@ -26,7 +26,10 @@
 
 (defn variable-declaration-transform
   ([type name] [:VariableDeclaration type name])
-  ([type name size] [:ArrayDeclaration type name size]))
+  ([type name size & args]
+   (if (not (nil? (re-find #"^-?\d+\.?\d*$" (str size))))             ; if 'size' is a number
+     [:VariableDeclaration [:Array type size] name]
+     (into [:MultiDeclaration] (vec (map (fn [id] [:VariableDeclaration type id]) (into [name (str size)] args)))))))
 
 (def syntax-tree->ast-transform
   {
@@ -39,7 +42,6 @@
    :UNARY_OP            (fn [op] op)
    :BINARY_OP           (fn [op] op)
    :ASSIGNMENT_OP       (fn [op] op)
-
    :VariableDeclaration variable-declaration-transform
    :Assignment          assignment-transform
    :Expr                expressions-transform
